@@ -1,0 +1,49 @@
+/* cards.css */
+
+.my-card {
+    /* Add your common card styling */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title-custom {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .card-text-custom {
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  /* cards.css or dishCard.css */
+
+.dish-photo {
+    width: 100%;       /* or 100%, or whatever fixed width you prefer */
+    height: 200px;      /* fix a height to keep them uniform */
+    object-fit: cover;  /* maintains aspect ratio, fills the container */
+    border-radius: 8px; /* optional rounding of corners */
+  }
+
+.restaurant-card {
+    width: 300px;      /* fixed width for all cards */
+    min-height: 280px; /* or a specific height if you want them uniform in height too */
+    margin: 0 auto;    /* center if needed */
+    display: flex;
+    flex-direction: column; /* ensures the card content stacks properly */
+  }
+  
+  .restaurant-card-img {
+    width: 100%;
+    height: 150px; 
+    object-fit: cover; /* if you have an image at the top, it scales/crops nicely */
+  }
+  
+  .review-modal .modal-dialog {
+    max-width: 800px; /* sets a max width */
+    /* You could also do something like: min-width: 600px; */
+  }
+  /* Add more classes as needed */
+  

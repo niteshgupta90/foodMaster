@@ -1,0 +1,84 @@
+/* HomePage.css */
+
+/* HERO SECTION */
+.hero-section {
+    height: 60vh;
+    background: url("http://localhost:5001/uploads/background-cake.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  
+  .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+  }
+  
+  /* FEATURES SECTION */
+  .features-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .feature-card {
+    border: none;
+    transition: transform 0.2s;
+    background-color: #fff;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* ADDITIONAL INFO SECTION */
+  .info-section h3 {
+    color: #007bff;
+    margin-bottom: 1rem;
+  }
+  
+  .info-section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* FOOTER */
+  .footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  .footer h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-hr {
+    border-color: #777;
+    margin: 1rem 0;
+  }
+  
+  /* RESPONSIVE TWEAKS */
+  @media (max-width: 768px) {
+    .hero-overlay h1 {
+      font-size: 2.5rem;
+    }
+    .hero-overlay p {
+      font-size: 1rem;
+    }
+  }
+  

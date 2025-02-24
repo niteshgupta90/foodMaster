@@ -1,0 +1,6 @@
+// Optional: override some Bootstrap variables
+$theme-colors: (
+  "primary": #ff6600,
+  "secondary": #343a40
+);
+@import 'bootstrap/scss/bootstrap';

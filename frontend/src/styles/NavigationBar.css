@@ -1,0 +1,44 @@
+/* src/styles/NavigationBar.css */
+
+.custom-navbar {
+    background-color: #1a1f36; /* Deep navy */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 1rem;
+  }
+  
+  .custom-navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #ffffff !important;
+  }
+  
+  .custom-nav-link {
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .custom-nav-link:hover,
+  .custom-nav-link.active-link {
+    color: #ffcc00 !important; /* Gold accent */
+  }
+  
+  .custom-btn {
+    border-radius: 20px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .navbar-text {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
