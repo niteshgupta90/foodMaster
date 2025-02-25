@@ -53,8 +53,12 @@ function DishCard({ dish }) {
   // New: Fetch list of restaurants for dropdown selection
   const fetchRestaurantOptions = async () => {
     try {
-      const res = await axios.get('/restaurants');
-      setRestaurantOptions(res.data);
+      // Request a large limit to fetch all restaurants for the dropdown.
+      // Adjust the endpoint parameters based on your backend pagination.
+      const res = await axios.get('/restaurants', { params: { page: 1, limit: 1000 } });
+      console.log('Restaurant options response:', res.data);
+      // Adjust this line based on the structure of res.data:
+      setRestaurantOptions(Array.isArray(res.data) ? res.data : res.data.restaurants);
     } catch (err) {
       console.error(err);
     }
@@ -316,7 +320,7 @@ function DishCard({ dish }) {
                     required
                   >
                     <option value="">Select a restaurant</option>
-                    {restaurantOptions.map((rest) => (
+                    {Array.isArray(restaurantOptions) && restaurantOptions.map((rest) => (
                       <option key={rest._id} value={rest._id}>
                         {rest.name}
                       </option>

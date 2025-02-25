@@ -1,67 +1,75 @@
 // src/pages/DishListPage.js
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Form, FloatingLabel } from 'react-bootstrap';
+import { Container, Row, Col, Form, FloatingLabel, Pagination } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import axios from '../services/api';
 import DishCard from '../components/DishCard';
-import '../styles/App.css'; // Ensure this file includes .content-container
 
 function DishListPage() {
   const [dishes, setDishes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  // 1. Parse the "restaurantId" from the query string ?restaurantId=xxxx
+  // Parse query parameters (if any) for filtering by restaurant
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const restaurantId = searchParams.get('restaurantId'); // might be null if not present
+  const restaurantId = searchParams.get('restaurantId');
   const restaurantName = searchParams.get('restaurantName') || 'Unknown';
 
   useEffect(() => {
     fetchDishes();
-    // re-fetch dishes if restaurantId changes
-    // eslint-disable-next-line
-  }, [restaurantId]);
+  }, [page, restaurantId]);
 
   const fetchDishes = async () => {
     try {
-      // 2. Construct the endpoint conditionally
       let endpoint = '/dishes';
+      const params = { page, limit: 20 };
       if (restaurantId) {
-        endpoint += `?restaurantId=${restaurantId}`;
+        params.restaurantId = restaurantId;
       }
-
-      // 3. Call the backend
-      const res = await axios.get(endpoint);
-      setDishes(res.data);
+      const res = await axios.get(endpoint, { params });
+      setDishes(res.data.dishes);
+      setTotalPages(res.data.totalPages);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const filteredDishes = dishes.filter((dish) =>
+  // Filter dishes locally by search term
+  const filteredDishes = (dishes || []).filter((dish) =>
     dish.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     (dish.restaurant?.name || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Build pagination items
+  const paginationItems = [];
+  for (let number = 1; number <= totalPages; number++) {
+    paginationItems.push(
+      <Pagination.Item
+        key={number}
+        active={number === page}
+        onClick={() => setPage(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
+
   return (
     <Container className="mt-4 content-container">
-      {/* Centered Heading */}
       {restaurantId ? (
-        <h2 className="text-center">
+        <h2 className="text-center mb-4">
           Dishes for <span className="fw-bold text-warning">{restaurantName}</span>
         </h2>
       ) : (
-        <h2 className="text-center">All Dishes</h2>
+        <h2 className="text-center mb-4">All Dishes</h2>
       )}
 
       {/* Centered Search Input using FloatingLabel */}
-      <Row className="justify-content-center">
+      <Row className="justify-content-center mb-4">
         <Col md={6}>
-          <FloatingLabel 
-            controlId="searchRestaurants" 
-            label="Search by dish or restaurant name..." 
-            className="mb-3"
-          >
+          <FloatingLabel controlId="searchDishes" label="Search by dish or restaurant name...">
             <Form.Control
               type="text"
               placeholder="Search by dish or restaurant name..."
@@ -72,13 +80,30 @@ function DishListPage() {
         </Col>
       </Row>
 
-      {/* Responsive Grid for Dish Cards */}
+      {/* Dish Cards */}
       <Row xs={1} md={2} lg={3} className="g-4">
         {filteredDishes.map((dish) => (
           <Col key={dish._id}>
             <DishCard dish={dish} />
           </Col>
         ))}
+      </Row>
+
+      {/* Pagination Controls */}
+      <Row className="justify-content-center mt-4">
+        <Col md="auto">
+          <Pagination>
+            <Pagination.Prev
+              onClick={() => setPage(prev => (prev > 1 ? prev - 1 : 1))}
+              disabled={page === 1}
+            />
+            {paginationItems}
+            <Pagination.Next
+              onClick={() => setPage(prev => (prev < totalPages ? prev + 1 : totalPages))}
+              disabled={page === totalPages}
+            />
+          </Pagination>
+        </Col>
       </Row>
     </Container>
   );

@@ -4,15 +4,31 @@ const Review = require('../models/Review');
 exports.getDishes = async (req, res) => {
   try {
     const { restaurantId } = req.query;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
+    const skip = (page - 1) * limit;
+
     let query = {};
     if (restaurantId) {
       query.restaurant = restaurantId;
     }
-    const dishes = await Dish.find(query)
-    .populate('restaurant')
-    .populate('recommendedRestaurant');
 
-    return res.json(dishes);
+    // Get the total count for pagination metadata.
+    const total = await Dish.countDocuments(query);
+
+    // Fetch the paginated dishes and populate related fields.
+    const dishes = await Dish.find(query)
+      .skip(skip)
+      .limit(limit)
+      .populate('restaurant')
+      .populate('recommendedRestaurant');
+
+    return res.json({
+      dishes,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit)
+    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }

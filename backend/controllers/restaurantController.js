@@ -2,9 +2,25 @@ const Restaurant = require('../models/Restaurant');
 
 exports.getAllRestaurants = async (req, res) => {
   try {
-    // Optional: handle query params for filtering or searching
-    const restaurants = await Restaurant.find();
-    return res.json(restaurants);
+    // Parse query parameters for pagination
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
+    const skip = (page - 1) * limit;
+
+    // Get total count for pagination metadata
+    const total = await Restaurant.countDocuments();
+
+    // Fetch paginated restaurants
+    const restaurants = await Restaurant.find()
+      .skip(skip)
+      .limit(limit);
+
+    return res.json({
+      restaurants,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit)
+    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
