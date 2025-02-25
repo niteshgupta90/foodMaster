@@ -37,8 +37,14 @@ export const AuthProvider = ({ children }) => {
     navigate('/login');
   };
 
+  const isAdmin = () => {
+    return user && user.isAdmin;
+  };
+
+  console.log('user', user);
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

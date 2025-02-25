@@ -6,6 +6,13 @@
     border-radius: 8px;
     margin-bottom: 1rem;
   }
+
+  .uniform-review-photo {
+    width: 100%;      /* Adjust width as needed (or use a fixed width, e.g., 200px) */
+    height: 150px;    /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures image fills the container and crops as needed */
+    border-radius: 5px; /* Optional: add rounded corners */
+  }
   
   .card-title-custom {
     font-size: 1.2rem;
@@ -29,7 +36,7 @@
 
 .restaurant-card {
     width: 300px;      /* fixed width for all cards */
-    min-height: 280px; /* or a specific height if you want them uniform in height too */
+    height: 200px; /* or a specific height if you want them uniform in height too */
     margin: 0 auto;    /* center if needed */
     display: flex;
     flex-direction: column; /* ensures the card content stacks properly */
@@ -37,8 +44,9 @@
   
   .restaurant-card-img {
     width: 100%;
-    height: 150px; 
+    height: 200px; 
     object-fit: cover; /* if you have an image at the top, it scales/crops nicely */
+    border-radius: 8px; /* optional rounding of corners */
   }
   
   .review-modal .modal-dialog {
@@ -46,4 +54,47 @@
     /* You could also do something like: min-width: 600px; */
   }
   /* Add more classes as needed */
+
+  /* Ensure each card has the same overall size */
+.uniform-card {
+  width: 100%;           /* We'll control the width via the grid (e.g., using Col sizes) */
+  height: 400px;         /* Fixed height for all cards */
+  overflow: hidden;      /* Hide content overflow if necessary */
+}
+
+/* Make sure the card image is uniform */
+.uniform-card .card-img-top {
+  width: 100%;
+  height: 150px;         /* Fixed image height */
+  object-fit: cover;     /* Ensures image fills the container without distorting */
+}
+
+/* Optionally style the card body to fill the remaining space */
+.uniform-card .card-body {
+  height: calc(350px - 150px);  /* Remaining height after image */
+  overflow: auto;      /* Allow scroll if content is long */
+}
   
+/* This div simulates a photo area */
+.restaurant-photo {
+  height: 150px;             /* Fixed height for the "image" area */
+  background: linear-gradient(135deg, #ff8a00, #e52e71); /* A stylish gradient */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restaurant-photo h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  padding: 0 10px;
+}
+
+/* Optional: adjust card body styling if needed */
+.card-text-custom {
+  font-size: 1rem;
+  color: #555;
+}

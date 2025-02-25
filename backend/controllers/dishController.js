@@ -42,7 +42,8 @@ exports.getDishById = async (req, res) => {
 
     // 2. Fetch all reviews for this dish
     const reviews = await Review.find({ dish: dish._id })
-      .populate('user', 'username'); 
+      .populate('user', 'username')
+      .populate('restaurant', 'name'); 
       // ^ This ensures `reviews[x].user` is replaced by the user object, 
       //   showing only 'username' field if you want
 

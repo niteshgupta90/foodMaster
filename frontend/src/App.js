@@ -12,6 +12,7 @@ import AddDishPage from './pages/AddDishPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import RestaurantDetailPage from './pages/RestaurantDetailPage';
+import AdminPage from './pages/AdminPage'; // Import AdminPage
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/admin" element={<AdminPage />} /> {/* Add AdminPage route */}
         </Routes>
       </AuthProvider>
     </Router>

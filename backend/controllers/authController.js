@@ -22,12 +22,13 @@ exports.register = async (req, res) => {
       email,
       password: hashedPassword,
       preference,
+      isAdmin, // Include isAdmin when creating a new user
     });
     const savedUser = await newUser.save();
 
     return res.status(201).json({ 
       msg: 'User registered successfully',
-      user: { id: savedUser._id, username: savedUser.username, email: savedUser.email }
+      user: { id: savedUser._id, username: savedUser.username, email: savedUser.email,  }
     });
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -59,7 +60,8 @@ exports.login = async (req, res) => {
         id: user._id,
         username: user.username,
         email: user.email,
-        preference: user.preference
+        preference: user.preference,
+        isAdmin: user.isAdmin, // Include isAdmin in the response
       }
     });
   } catch (err) {

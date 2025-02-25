@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   // For dietary preferences, e.g., vegetarian, vegan, etc.
   preference: { type: String, default: 'vegetarian' },
+  isAdmin: { type: Boolean, default: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
 import '../styles/cards.css';
+import { Link } from 'react-router-dom';
 
 function RestaurantCard({ restaurant }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <Card className="h-100 my-card">
-        {/* Placeholder image (or real one if you have it) */}
-        <Card.Img
-          variant="top"
-          src="https://picsum.photos/200"
-          alt={restaurant.name}
-        />
+      <Card className="my-card uniform-card">
+        <div className="restaurant-photo">
+          <h2>{restaurant.name}</h2>
+        </div>
         <Card.Body className="d-flex flex-column">
-          <Card.Title>{restaurant.name}</Card.Title>
-          <Card.Text className="text-muted">
+          <Card.Text className="card-text-custom text-center">
             <strong>Address:</strong> {restaurant.address}
           </Card.Text>
-
-          <div className="mt-auto">
-            <Button variant="primary" onClick={() => setShowModal(true)} className="me-2">
+          <div className="mt-auto d-flex gap-2">
+            <Button 
+              variant="primary" 
+              onClick={() => setShowModal(true)} 
+              className="flex-fill custom-btn-fixed"
+            >
               Info
             </Button>
-            <Button
+            <Button 
               variant="secondary"
-              href={`/dishes?restaurantId=${restaurant._id}&restaurantName=${encodeURIComponent(
-                restaurant.name
-              )}`}
+              as={Link}
+              to={`/dishes?restaurantId=${restaurant._id}&restaurantName=${encodeURIComponent(restaurant.name)}`}
+              className="flex-fill custom-btn-fixed"
             >
               View Dishes
             </Button>
