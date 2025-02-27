@@ -69,7 +69,7 @@ function DishListPage() {
       {/* Centered Search Input using FloatingLabel */}
       <Row className="justify-content-center mb-4">
         <Col md={6}>
-          <FloatingLabel controlId="searchDishes" label="Search by dish or restaurant name...">
+          <FloatingLabel controlId="searchDishes" label="Search by dish name...">
             <Form.Control
               type="text"
               placeholder="Search by dish or restaurant name..."

@@ -50,7 +50,8 @@ exports.getDishById = async (req, res) => {
     // 1. Get the Dish itself
     const dish = await Dish.findById(req.params.id)
       .populate('restaurant')
-      .populate('recommendedRestaurant');  // e.g., if you want restaurant data
+      .populate('recommendedRestaurant') // e.g., if you want restaurant data
+      .populate('recommendedRestaurants', 'name'); // populate recommendedRestaurants with name
 
     if (!dish) {
       return res.status(404).json({ msg: 'Dish not found' });

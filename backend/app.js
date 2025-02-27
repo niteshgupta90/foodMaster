@@ -21,12 +21,14 @@ const authRoutes = require('./routes/authRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 const dishRoutes = require('./routes/dishRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const dishReviewsRoutes = require('./routes/dishReviewsRoutes');
 
 // Use routes
 app.use('/api/auth', authRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/dishes', dishRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/dish-reviews', dishReviewsRoutes);
 app.use('/uploads', express.static('uploads'));
 
 // Start server

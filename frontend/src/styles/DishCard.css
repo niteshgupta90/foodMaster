@@ -1,0 +1,56 @@
+/* Ensure a uniform card height and spacing */
+.uniform-card {
+    height: 350px;  /* Adjust as needed */
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  /* Card styling */
+  .dish-card {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+  }
+  
+  /* Image styling */
+  .dish-card-img {
+    height: 150px;        /* Fixed height for image area */
+    object-fit: cover;     /* Ensures image fills the container without distortion */
+  }
+  
+  /* Placeholder styling if no image is available */
+  .dish-card-img-placeholder {
+    height: 150px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Change gradient as desired */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dish-card-img-placeholder h2 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0 10px;
+  }
+  
+  /* Card title styling */
+  .dish-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Card text styling */
+  .dish-card-text {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  /* View button styling */
+  .view-button {
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
+  }
+  

@@ -1,7 +1,7 @@
 // controllers/reviewController.js
 const Review = require('../models/Review');
 const Dish = require('../models/Dish');
-
+const { recalcRecommendedRestaurants } = require('./dishHelpers');
 
 async function updateDishRecommendedRestaurant(dishId) {
   try {
@@ -101,7 +101,7 @@ exports.createReview = async (req, res) => {
     const savedReview = await newReview.save();
 
     // Update the dish's recommended restaurant based on all reviews
-    await updateDishRecommendedRestaurant(dishId);
+    await recalcRecommendedRestaurants(dishId);
 
     // Ensure dishDoc has numeric defaults
     dishDoc.totalRating = dishDoc.totalRating || 0;

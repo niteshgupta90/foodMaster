@@ -2,13 +2,18 @@
 const mongoose = require('mongoose');
 
 const dishSchema = new mongoose.Schema({
-  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant', required: true },
-  name: { type: String, required: true },
+  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' },
+  restaurants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }],
+  name: { type: String, required: true, unique: true },
   // e.g., recommended restaurant (reference to Restaurant model)
   recommendedRestaurant: { 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Restaurant' 
   },
+  recommendedRestaurants: [{ 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Restaurant' 
+  }],
   description: String,
   // Additional tags: vegetarian, vegan, containsEgg, etc.
   isVegetarian: { type: Boolean, default: true },

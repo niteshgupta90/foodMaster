@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import RestaurantDetailPage from './pages/RestaurantDetailPage';
 import AdminPage from './pages/AdminPage'; // Import AdminPage
+import DishReviewsPage from './pages/DishReviewsPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
 
           {/* Dish Detail route */}
           <Route path="/dishes/:dishId" element={<DishDetailPage />} />
+          <Route path="/dish-reviews" element={<DishReviewsPage />} />
 
           {/* Protected route to add dish */}
           <Route

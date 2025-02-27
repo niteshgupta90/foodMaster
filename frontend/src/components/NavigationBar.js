@@ -21,20 +21,20 @@ function NavigationBar() {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link
+            {/* <Nav.Link
               as={Link}
               to="/restaurants"
               className={`custom-nav-link ${isActive('/restaurants') ? 'active-link' : ''}`}
             >
               Restaurants
-            </Nav.Link>
-            <Nav.Link
+            </Nav.Link> */}
+            {/* <Nav.Link
               as={Link}
               to="/dishes"
               className={`custom-nav-link ${isActive('/dishes') ? 'active-link' : ''}`}
             >
               Dishes
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
           <Nav className="ms-auto align-items-center">
             {!token ? (
