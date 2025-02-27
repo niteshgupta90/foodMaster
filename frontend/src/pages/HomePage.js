@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/HomePage.css';
 
 function HomePage() {
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const backgroundImageUrl = `${backendUrl}/uploads/background-cake.jpg`;
 
     const navigate = useNavigate();
 
@@ -18,6 +20,7 @@ function HomePage() {
       {/* HERO SECTION */}
       <div 
         className="hero-section d-flex align-items-center justify-content-center"
+        style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       >
         <div className="hero-overlay text-center">
           <h1>Welcome to FoodMaster</h1>

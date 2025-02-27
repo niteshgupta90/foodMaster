@@ -2,6 +2,7 @@
 const Review = require('../models/Review');
 const Dish = require('../models/Dish');
 const { recalcRecommendedRestaurants } = require('./dishHelpers');
+REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
 
 exports.getDishReviewsByRestaurant = async (req, res) => {
   try {
@@ -29,7 +30,7 @@ exports.createDishReviewByRestaurant = async (req, res) => {
 
     // Handle photo upload if provided.
     if (req.file) {
-      const imageUrl = `http://localhost:5001/uploads/${req.file.filename}`;
+      const imageUrl = `${REACT_APP_BACKEND_URL}/uploads/${req.file.filename}`;
       await Dish.findByIdAndUpdate(dish, {
         $push: { images: { url: imageUrl, filename: req.file.filename } }
       });

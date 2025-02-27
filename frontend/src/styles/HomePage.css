@@ -3,7 +3,6 @@
 /* HERO SECTION */
 .hero-section {
     height: 60vh;
-    background: url("http://localhost:5001/uploads/background-cake.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;

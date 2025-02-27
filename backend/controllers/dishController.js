@@ -1,6 +1,8 @@
 const Dish = require('../models/Dish');
 const Review = require('../models/Review');
 
+REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
+
 exports.getDishes = async (req, res) => {
   try {
     const { restaurantId } = req.query;
@@ -84,7 +86,7 @@ exports.uploadDishImage = async (req, res) => {
     }
 
     // e.g., local path: 'uploads/dish-1662121212122.jpg'
-    const imageUrl = `http://localhost:5001/${file.path}`; 
+    const imageUrl = `${REACT_APP_BACKEND_URL}/${file.path}`; 
     // Or just `file.path` if you plan to handle it differently
 
     // Fetch dish

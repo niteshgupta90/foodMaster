@@ -3,7 +3,7 @@ import axios from 'axios';
 const token = localStorage.getItem('token'); // or use a context for auth
 
 const instance = axios.create({
-  baseURL: 'http://localhost:5001/api',
+  baseURL: process.env.REACT_APP_BACKEND_URL + '/api', // Use environment variable
 });
 
 // Attach token if exists
