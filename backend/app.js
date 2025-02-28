@@ -12,7 +12,10 @@ app.use(express.json()); // parse JSON payload
 
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/yourApp';
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000 })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
