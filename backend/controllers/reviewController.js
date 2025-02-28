@@ -2,6 +2,7 @@
 const Review = require('../models/Review');
 const Dish = require('../models/Dish');
 const { recalcRecommendedRestaurants } = require('./dishHelpers');
+REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 async function updateDishRecommendedRestaurant(dishId) {
   try {
@@ -71,7 +72,7 @@ exports.createReview = async (req, res) => {
       // If a photo is uploaded with the review, handle it.
       if (req.file) {
         // Build the image URL. Adjust the base URL as needed.
-        const imageUrl = `http://localhost:5001/uploads/${req.file.filename}`;
+        const imageUrl = `${REACT_APP_BACKEND_URL}/uploads/${req.file.filename}`;
         
         // Update the dish document's images array.
         await Dish.findByIdAndUpdate(dishId, { 

@@ -2,7 +2,7 @@
 const Review = require('../models/Review');
 const Dish = require('../models/Dish');
 const { recalcRecommendedRestaurants } = require('./dishHelpers');
-REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5001';
+REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 exports.getDishReviewsByRestaurant = async (req, res) => {
   try {
