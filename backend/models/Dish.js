@@ -6,13 +6,13 @@ const dishSchema = new mongoose.Schema({
   restaurants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }],
   name: { type: String, required: true, unique: true },
   // e.g., recommended restaurant (reference to Restaurant model)
-  recommendedRestaurant: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Restaurant' 
+  recommendedRestaurant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Restaurant'
   },
-  recommendedRestaurants: [{ 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Restaurant' 
+  recommendedRestaurants: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Restaurant'
   }],
   description: String,
   // Additional tags: vegetarian, vegan, containsEgg, etc.
@@ -29,6 +29,32 @@ const dishSchema = new mongoose.Schema({
       filename: String, // optional, if needed
     },
   ],
+  cuisineType: {
+    type: String,
+    enum: ['Indian', 'Chinese', 'Italian', 'Thai', 'Mexican', 'Japanese', 'American'],
+    required: true
+  },
+  priceTier: {
+    type: String,
+    enum: ['$', '$$', '$$$', '$$$$'],
+    required: true
+  },
+  isPopular: {
+    type: Boolean,
+    default: false
+  },
+  dietary: {
+    isVegetarian: Boolean,
+    isVegan: Boolean,
+    isGlutenFree: Boolean
+  },
+  description: String,
+  origin: String,
+  recipe: String,
+  calories: Number,
 }, { timestamps: true });
+
+// CREATE A TEXT INDEX ON name AND description
+dishSchema.index({ name: 'text', description: 'text' });
 
 module.exports = mongoose.model('Dish', dishSchema);

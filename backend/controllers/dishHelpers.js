@@ -1,19 +1,27 @@
 // controllers/dishHelpers.js
-const Dish = require('../models/Dish');
-const Review = require('../models/Review');
+const Dish = require("../models/Dish");
+const Review = require("../models/Review");
 
 async function recalcRecommendedRestaurants(dishId) {
   // Fetch all reviews for the given dish and populate the restaurant field (only name is needed)
-  const reviews = await Review.find({ dish: dishId }).populate('restaurant', 'name');
+  const reviews = await Review.find({ dish: dishId }).populate(
+    "restaurant",
+    "name",
+  );
   if (!reviews.length) {
     // If no reviews exist, clear recommendedRestaurants
-    await Dish.findByIdAndUpdate(dishId, { recommendedRestaurants: [] });
+    await Dish.findByIdAndUpdate(dishId, {
+      recommendedRestaurants: [],
+      averageRating: 0,
+      totalRating: 0,
+      reviewCount: 0,
+    });
     return [];
   }
 
   // Group reviews by restaurant
   const groups = {};
-  reviews.forEach(review => {
+  reviews.forEach((review) => {
     if (review.restaurant && review.restaurant._id) {
       const restId = review.restaurant._id.toString();
       if (!groups[restId]) {
@@ -30,7 +38,7 @@ async function recalcRecommendedRestaurants(dishId) {
   });
 
   // Convert groups into an array with computed average ratings
-  const grouped = Object.values(groups).map(group => ({
+  const grouped = Object.values(groups).map((group) => ({
     ...group,
     avgRating: group.totalRating / group.count,
   }));
@@ -43,10 +51,16 @@ async function recalcRecommendedRestaurants(dishId) {
   });
 
   // Select the top three restaurants
-  const topThree = grouped.slice(0, 3).map(group => group._id);
+  const topThree = grouped.slice(0, 3).map((group) => group._id);
 
   // Update the dish document
-  await Dish.findByIdAndUpdate(dishId, { recommendedRestaurants: topThree });
+  await Dish.findByIdAndUpdate(dishId, {
+    recommendedRestaurants: topThree,
+    totalRating: reviews.reduce((sum, r) => sum + Number(r.rating), 0),
+    reviewCount: reviews.length,
+    averageRating:
+      reviews.reduce((sum, r) => sum + Number(r.rating), 0) / reviews.length,
+  });
 
   return topThree;
 }

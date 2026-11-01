@@ -1,6 +1,6 @@
 import axios from 'axios'; // or your configured instance
 
-const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+const MAPBOX_TOKEN = import.meta.env.REACT_APP_MAPBOX_TOKEN;
 
 async function geocodeAddress(address) {
   const encoded = encodeURIComponent(address);

@@ -1,0 +1,131 @@
+/* src/styles/DishDetailsPage.css */
+
+/* Container styling */
+.dish-detail-page {
+    /* Additional top padding if your navbar is fixed */
+    padding-top: 100px;
+  }
+  
+  /* Hero Section */
+  .dish-hero-section {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  
+  .dish-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .dish-hero-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dish-hero-placeholder h2 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .dish-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dish-hero-title {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Dish details card styling */
+.dish-details-card {
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fff;
+  }
+  
+  .dish-details-card h2 {
+    font-weight: 700;
+  }
+  
+  /* Number circle styling (for top recommended) */
+  .number-circle {
+    width: 40px;
+    height: 40px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .dish-reviews-page {
+    padding-top: 120px; /* Extra top margin so the fixed navbar doesn't cover the title */
+  }
+  
+  .recommended-card {
+    /* Use a uniform height for cards if needed */
+    height: 300px;
+    overflow: hidden;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .recommended-card .restaurant-photo {
+    height: 150px;
+    background: linear-gradient(135deg, #1a1f36, #ffcc00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .recommended-card .restaurant-photo h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 10px;
+    text-align: center;
+  }
+  
+  .recommended-card .card-body {
+    padding: 1rem;
+  }
+  
+  .recommended-card .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+/* Loading text if dish isn't fetched yet */
+.loading-text {
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 1.2rem;
+    color: #666;
+  }

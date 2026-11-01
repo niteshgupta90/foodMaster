@@ -93,3 +93,7 @@ typings/
 # Temporary files
 tmp/
 temp/
+# Generated builds and local environment overrides
+build/
+.env.local
+.env.*.local
