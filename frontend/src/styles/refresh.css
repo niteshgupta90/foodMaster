@@ -1230,7 +1230,8 @@ main {
   }
 }
 
-.sign-in-card h1 {
+.sign-in-card h1,
+.sign-up-card h1 {
   font-size: clamp(1.8rem, 5vw, 2.4rem);
   white-space: nowrap;
 }

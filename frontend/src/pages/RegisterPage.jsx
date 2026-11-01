@@ -36,7 +36,7 @@ function RegisterPage() {
   };
 
   return (
-    <Container className="mt-4 content-container" style={{ maxWidth: "400px" }}>
+    <Container className="account-card sign-up-card">
       <h1>Join the table</h1>
       {error && (
         <p role="alert" className="alert alert-danger">
